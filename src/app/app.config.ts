@@ -9,5 +9,5 @@ export const appConfig: ApplicationConfig = {
 
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://87.242.103.80'
+  apiBaseUrl: 'https://lcthackathon.ddns.net'
 };
