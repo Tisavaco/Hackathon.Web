@@ -11,7 +11,7 @@ export class AppUrlService {
     constructor() { }
 
     loadContent(query: string): string{
-        return this.getUrlWithParams({seach_str: query}, `search`)
+        return this.getUrlWithParams({q: query}, `search`)
     }
 
     private getUrlWithParams(parameters: { [key: string]: any }, ...parts: string[]): string {
