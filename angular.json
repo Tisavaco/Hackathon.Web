@@ -17,6 +17,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "externalDependencies": ["http", "https", "url", "util", "net"],
+            "allowedCommonJsDependencies": [
+              "tough-cookie",
+              "node-fetch",
+              "fetch-cookie",
+              "abort-controller",
+              "ws",
+              "eventsource"
+            ],
             "outputPath": "dist/hackathon.web",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -30,6 +39,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.sass"
             ],
             "scripts": []
@@ -39,8 +49,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "4mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -97,5 +107,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
