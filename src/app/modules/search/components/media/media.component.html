@@ -5,14 +5,14 @@
         <source [src]="content?.link" type="video/mp4">
       </video>
       <div class="media-description w-100">
-        <ng-container>
+        <ng-container *ngIf="content?.tags">
           <div class="media-tags mb-0">
             <span>{{content?.tags}}</span>
           </div>
         </ng-container> 
-        <ng-container>
-          <div>
-            <span>{{content?.descr_voce}}</span>
+        <ng-container *ngIf="content?.tags_description">
+          <div class="mb-0">
+            <span>{{content?.tags_description}}</span>
           </div>
         </ng-container> 
       </div>

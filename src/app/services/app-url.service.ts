@@ -10,7 +10,7 @@ export class AppUrlService {
     constructor() { }
 
     addVideo(): string {
-        return this.getUrl('add');
+        return this.getUrl('add_queue');
     }
 
     addFile(): string {

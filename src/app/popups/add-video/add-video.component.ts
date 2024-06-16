@@ -33,7 +33,7 @@ export class AddVideoComponent implements OnInit{
     this.form = new UntypedFormGroup(
       {
         link: new UntypedFormControl,
-        description: new UntypedFormControl
+        tags_description: new UntypedFormControl
       },
     );
   }
