@@ -5,7 +5,12 @@
         </div>
     </div>
     <mat-dialog-content>
-        <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab-group 
+            mat-stretch-tabs="false" 
+            mat-align-tabs="start" 
+            animationDuration="0ms"
+            [selectedIndex]="selected.value"
+            (selectedIndexChange)="selected.setValue($event)">
             <mat-tab label="По ссылке">
                 <ng-container *ngIf="form">
                     <form [formGroup]="form">
@@ -20,14 +25,17 @@
                     </form>
                 </ng-container>
             </mat-tab>
-            <!-- <mat-tab label="Файлом">
+            <mat-tab label="Файлом">
                 <ng-container>
-                    <div>
-                        <input class="custom-file-input" type="file" (change)="onFileChange($event)" />
-                        <button (click)="uploadFile()">Upload</button>
+                    <div class="add-file-container mt-1">
+                        <label for="file-upload" class="btn btn-primary">Выберете файл</label>
+                        <input id="file-upload"  type="file" (change)="onFileChange($event)"/>
+                        <div class="ml-1 file-description">
+                            <span *ngIf="file">{{file.name}}</span>
+                        </div>
                     </div>
                 </ng-container>
-            </mat-tab> -->
+            </mat-tab>
           </mat-tab-group>
     </mat-dialog-content>
     <mat-dialog-actions>

@@ -12,6 +12,11 @@ export class AppUrlService {
     addVideo(): string {
         return this.getUrl('add');
     }
+
+    addFile(): string {
+        return this.getUrl('add-file');
+    }
+
     private getUrl(relativeUrl: string): string {
         return `${environment.apiBaseUrl}${appHelpers.getUrl(`v1/${relativeUrl}`)}`;
     }

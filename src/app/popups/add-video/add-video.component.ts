@@ -3,6 +3,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 import { Store } from '@ngrx/store';
 import { FileUploader } from 'ng2-file-upload';
 
+import { LayoutService } from '../../services';
 import * as actions from '../../state/actions';
 
 import {
@@ -22,11 +23,13 @@ import { AddVideoModel } from '../../models'
 })
 export class AddVideoComponent implements OnInit{
   form: UntypedFormGroup;
-  uploader: FileUploader = new FileUploader({ url: 'http://example.com/upload' });
+  selected = new UntypedFormControl(0);
+  file: any;
 
   constructor( 
     private dialogRef: MatDialogRef<AddVideoComponent>,
-    private store$: Store ){
+    private store$: Store,
+    private layoutService: LayoutService ){
     this.form = new UntypedFormGroup(
       {
         link: new UntypedFormControl,
@@ -38,15 +41,20 @@ export class AddVideoComponent implements OnInit{
 
   }
   onFileChange(event: any) {
-    const file = event.target.files[0];
-    this.uploader.addToQueue([file]);
+    this.file = event.target.files[0];
   }
 
-  uploadFile() {
-    this.uploader.uploadAll();
-  }
 
   add(){
+    switch (this.selected.value){
+      case 0: this.addFromLink()
+            break;
+      case 1: this.addFromFile()
+            break;
+    }
+  }
+
+  addFromLink(): void {
     if (this.form.valid) {
       const data = this.form.getRawValue() as AddVideoModel;
       this.store$.dispatch(actions.addVideo({addVideoModel: data}));
@@ -54,6 +62,11 @@ export class AddVideoComponent implements OnInit{
     }
     else{
       this.form.markAllAsTouched();
-    }
+    } 
+  }
+
+  addFromFile(): void {
+    this.layoutService.addFile(this.file);
+    this.dialogRef.close();
   }
 }
